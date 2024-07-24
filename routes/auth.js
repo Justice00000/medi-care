@@ -1,21 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const session = require('express-session');
+const { createUser, findUserByUsername } = require('../models/User');
 
-const app = express();
 const router = express.Router();
 
-// Middleware for parsing JSON bodies
-app.use(express.json());
-
-// Middleware for sessions
-app.use(session({
-    secret: 'Obiageli2003$', // Replace with a strong secret key
-    resave: false,
-    saveUninitialized: true
-}));
-
-// Route to handle user registration
+// Define your routes
 router.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -28,7 +17,6 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Route to handle user login
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -47,7 +35,6 @@ router.post('/login', (req, res) => {
     });
 });
 
-// Route to handle user logout
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -57,7 +44,6 @@ router.get('/logout', (req, res) => {
     });
 });
 
-// Route to check if the user is logged in
 router.get('/check-session', (req, res) => {
     if (req.session.userId) {
         findUserByUsername(req.session.userId, (err, user) => {
@@ -71,11 +57,4 @@ router.get('/check-session', (req, res) => {
     }
 });
 
-// Use the router
-app.use('/auth', router);
-
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+module.exports = router;
