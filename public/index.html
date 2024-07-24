@@ -51,16 +51,6 @@
             </ul>
             <!-- login button -->
             <a href="/auth/login" id="loginButton" class="nav-appointement-btn">Sign in</a>
-
-            <!-- User Menu (Initially Hidden) -->
-            <div id="userMenu" class="dropdown" style="display: none;">
-                <button class="dropbtn" id="usernameButton"></button>
-                <div class="dropdown-content">
-                    <a href="/auth/change-password">Change Password</a>
-                    <a href="/auth/delete-account">Delete Account</a>
-                    <a href="/auth/logout">Logout</a>
-                </div>
-            </div>
         </nav>
         <!-- End Navigation -->
         <!-- Content -->
@@ -373,6 +363,32 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="swipers.js"></script>
+    <script>
+        // Function to update button text based on authentication status
+        function updateAuthButton() {
+            const button = document.getElementById('loginButton');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Check if the user is logged in
+
+            if (isLoggedIn) {
+                button.textContent = 'Sign Out';
+                button.onclick = function () {
+                    localStorage.setItem('isLoggedIn', 'false'); // Set the user as logged out
+                    updateAuthButton(); // Update button text
+                    // Optionally, redirect or perform additional actions for sign-out
+                };
+            } else {
+                button.textContent = 'Sign In';
+                button.onclick = function () {
+                    localStorage.setItem('isLoggedIn', 'true'); // Set the user as logged in
+                    updateAuthButton(); // Update button text
+                    // Optionally, redirect or perform additional actions for sign-in
+                };
+            }
+        }
+
+        // Initialize button state on page load
+        document.addEventListener('DOMContentLoaded', updateAuthButton);
+    </script>
 </body>
 
 </html>
