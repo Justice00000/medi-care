@@ -1,6 +1,17 @@
 {
+  "name": "jaytech",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "build": "npm install",
+    "start": "node server.js",
+    "rebuild": "npm rebuild bcrypt"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -13,15 +24,5 @@
     "nodemailer": "^6.9.14",
     "sqlite3": "^5.1.7"
   },
-  "name": "jaytech",
-  "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "keywords": []
 }
