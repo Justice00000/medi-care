@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: empowher-naija
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    build:
+      commands:
+        - npm rebuild bcryptjs
