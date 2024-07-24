@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Middleware for sessions
 app.use(session({
-    secret: 'your-secret-key', // Replace with a strong secret key
+    secret: 'Obiageli2003$', // Replace with a strong secret key
     resave: false,
     saveUninitialized: true
 }));
