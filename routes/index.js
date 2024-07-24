@@ -1,21 +1,14 @@
 const express = require('express');
-const session = require('express-session');
-const authRouter = require('./routes/auth'); // Ensure the path is correct
+const path = require('path');
 
-const app = express();
+const router = express.Router();
 
-app.use(express.json());
-
-app.use(session({
-    secret: 'your-secret-key', // Replace with a strong secret key
-    resave: false,
-    saveUninitialized: true
-}));
-
-// Use the router for routes starting with /auth
-app.use('/auth', authRouter);
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/login.html'));
 });
+
+router.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/register.html'));
+});
+
+module.exports = router;
