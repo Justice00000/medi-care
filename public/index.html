@@ -50,7 +50,17 @@
                 <li><a href="#" class="menu-link">Emergency</a></li>
             </ul>
             <!-- login button -->
-            <a href="/auth/login" class="nav-appointement-btn">Sign in</a>
+            <a href="/auth/login" id="loginButton" class="nav-appointement-btn">Sign in</a>
+
+            <!-- User Menu (Initially Hidden) -->
+            <div id="userMenu" class="dropdown" style="display: none;">
+                <button class="dropbtn" id="usernameButton"></button>
+                <div class="dropdown-content">
+                    <a href="/auth/change-password">Change Password</a>
+                    <a href="/auth/delete-account">Delete Account</a>
+                    <a href="/auth/logout">Logout</a>
+                </div>
+            </div>
         </nav>
         <!-- End Navigation -->
         <!-- Content -->
