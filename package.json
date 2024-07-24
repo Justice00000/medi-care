@@ -1,15 +1,12 @@
 {
   "name": "jaytech",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "build": "npm install",
-    "start": "node server.js",
     "rebuild": "npm rebuild bcrypt"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
@@ -24,5 +21,8 @@
     "nodemailer": "^6.9.14",
     "sqlite3": "^5.1.7"
   },
-  "keywords": []
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
