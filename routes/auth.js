@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const path = require('path');
 
 const router = express.Router();
 
@@ -21,9 +22,22 @@ const findUserByUsername = (username, callback) => {
     }
 };
 
-// Route to serve the login page (GET request)
+// Serve login page
 router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html')); // Serve your login.html file
+    res.sendFile(path.join(__dirname, '..', 'public', 'login.html'), (err) => {
+        if (err) {
+            res.status(500).send('Error serving login page.');
+        }
+    });
+});
+
+// Serve register page
+router.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'register.html'), (err) => {
+        if (err) {
+            res.status(500).send('Error serving register page.');
+        }
+    });
 });
 
 // Registration route
