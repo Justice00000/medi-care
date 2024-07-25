@@ -3,6 +3,30 @@ const bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
+// Mock database functions (you should replace these with your actual database logic)
+const users = []; // In-memory user storage for demonstration
+
+const createUser = (username, hashedPassword, callback) => {
+    const user = { id: users.length + 1, username, password: hashedPassword };
+    users.push(user);
+    callback(null);
+};
+
+const findUserByUsername = (username, callback) => {
+    const user = users.find(user => user.username === username);
+    if (user) {
+        callback(null, user);
+    } else {
+        callback('User not found');
+    }
+};
+
+// Route to serve the login page (GET request)
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html')); // Serve your login.html file
+});
+
+// Registration route
 router.post('/register', (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 10);
@@ -15,6 +39,7 @@ router.post('/register', (req, res) => {
     });
 });
 
+// Login route
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
 
@@ -33,6 +58,7 @@ router.post('/login', (req, res) => {
     });
 });
 
+// Logout route
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {

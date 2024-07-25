@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const bcrypt = require('bcryptjs');
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
@@ -20,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', indexRoutes);
-app.use('/auth', authRoutes);
+app.use('/', authRoutes); // Use authRoutes directly without /auth prefix
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
