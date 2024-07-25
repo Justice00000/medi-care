@@ -55,13 +55,12 @@
                                 <div class="card-body">
                                     <form id="signupForm">
                                         <div class="form-group">
-                                            <form action="/auth/register" method="POST">
-                                                <label for="role">I am a:</label>
-                                                <select id="role" class="form-control" required>
-                                                    <option value="">Select...</option>
-                                                    <option value="patient">Patient</option>
-                                                    <option value="medical_staff">Medical Staff</option>
-                                                </select>
+                                            <label for="role">I am a:</label>
+                                            <select id="role" name="role" class="form-control" required>
+                                                <option value="">Select...</option>
+                                                <option value="patient">Patient</option>
+                                                <option value="medical_staff">Medical Staff</option>
+                                            </select>
                                         </div>
                                         <div id="common-fields">
                                             <div class="form-group">
@@ -167,8 +166,6 @@
             e.preventDefault();
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
-
-            console.log(data);
 
             const response = await fetch('/auth/register', {
                 method: 'POST',
