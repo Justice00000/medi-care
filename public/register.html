@@ -55,8 +55,8 @@
                                 <div class="card-body">
                                     <form id="signupForm">
                                         <div class="form-group">
-                                            <label for="role">I am a:</label>
-                                            <select id="role" name="role" class="form-control" required>
+                                            <label for="role">Role:</label>
+                                            <select name="role" class="form-control" id="role" required>
                                                 <option value="">Select...</option>
                                                 <option value="patient">Patient</option>
                                                 <option value="medical_staff">Medical Staff</option>
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
-                                        Already have an account? <a href="/login"
+                                        Already have an account? <a href="/auth/login"
                                             class="text-info text-gradient font-weight-bold">Login here</a>
                                     </p>
                                 </div>
@@ -164,23 +164,29 @@
 
         document.getElementById('signupForm').addEventListener('submit', async function (e) {
             e.preventDefault();
+            console.log('Signup form submitted');
+
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
 
-            const response = await fetch('/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
+            try {
+                const response = await fetch('/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
 
-            if (response.ok) {
-                const result = await response.json();
-                alert(result.message);
-                // Redirect to login page if needed
-                window.location.href = '/login';
-            } else {
-                const result = await response.json();
-                alert(result.message);
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                    window.location.href = '/auth/login';
+                } else {
+                    const result = await response.json();
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error during signup:', error);
+                alert('An error occurred. Please try again.');
             }
         });
     </script>

@@ -9,6 +9,7 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); // Add this line to parse JSON
 app.use(session({
     secret: 'your_secret_key',
     resave: false,

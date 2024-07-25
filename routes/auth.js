@@ -4,7 +4,7 @@ const path = require('path');
 
 const router = express.Router();
 
-// Mock database functions (you should replace these with your actual database logic)
+// Mock database functions (replace with actual database logic)
 const users = []; // In-memory user storage for demonstration
 
 const createUser = (username, hashedPassword, callback) => {
@@ -47,9 +47,9 @@ router.post('/register', (req, res) => {
 
     createUser(username, hashedPassword, (err) => {
         if (err) {
-            return res.status(500).send('Error registering new user.');
+            return res.status(500).send({ message: 'Error registering new user.' });
         }
-        res.send('User registered successfully.');
+        res.send({ message: 'User registered successfully.' });
     });
 });
 
@@ -59,15 +59,15 @@ router.post('/login', (req, res) => {
 
     findUserByUsername(username, (err, user) => {
         if (err || !user) {
-            return res.status(400).send('Invalid credentials.');
+            return res.status(400).send({ message: 'Invalid credentials.' });
         }
 
         const isMatch = bcrypt.compareSync(password, user.password);
         if (isMatch) {
             req.session.userId = user.id;
-            res.send('Login successful');
+            res.send({ message: 'Login successful' });
         } else {
-            res.status(400).send('Invalid credentials.');
+            res.status(400).send({ message: 'Invalid credentials.' });
         }
     });
 });
@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
-            return res.status(500).send('Could not log out.');
+            return res.status(500).send({ message: 'Could not log out.' });
         }
         res.redirect('/');
     });
