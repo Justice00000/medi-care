@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
-                                        Already have an account? <a href="/auth/login"
+                                        Already have an account? <a href="/login"
                                             class="text-info text-gradient font-weight-bold">Login here</a>
                                     </p>
                                 </div>
@@ -170,7 +170,7 @@
             const data = Object.fromEntries(formData.entries());
 
             try {
-                const response = await fetch('/auth/register', {
+                const response = await fetch('/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
@@ -179,7 +179,7 @@
                 if (response.ok) {
                     const result = await response.json();
                     alert(result.message);
-                    window.location.href = '/auth/login';
+                    window.location.href = '/login';
                 } else {
                     const result = await response.json();
                     alert(result.message);

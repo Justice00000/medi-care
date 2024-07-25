@@ -70,8 +70,8 @@
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">
-                    Don't have an account? <a href="/auth/register"
-                      class="text-info text-gradient font-weight-bold">Register here</a>
+                    Don't have an account? <a href="/register" class="text-info text-gradient font-weight-bold">Register
+                      here</a>
                   </p>
                 </div>
               </div>
@@ -113,7 +113,7 @@
       const data = Object.fromEntries(formData.entries());
 
       try {
-        const response = await fetch('/auth/login', {
+        const response = await fetch('/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
