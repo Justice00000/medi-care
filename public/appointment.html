@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>EMPOWHER NAIJA | Book Appointment</title>
+    <!-- Fonts and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- CSS Files -->
+    <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet">
+    <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet">
+    <link href="/login.css" rel="stylesheet">
+    <link href="/stylees.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="font-weight-bolder text-info text-gradient">Book an Appointment</h3>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="full-name">Full Name:</label>
+                <input type="text" name="fullName" class="form-control" required id="full-name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" class="form-control" required id="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" class="form-control" required id="phone">
+            </div>
+            <div class="form-group">
+                <label for="medical-service">Type of Medical Service:</label>
+                <select name="medicalService" class="form-control" required id="medical-service">
+                    <option value="">Select...</option>
+                    <option value="general_consultation">General Consultation</option>
+                    <option value="specialist_consultation">Specialist Consultation</option>
+                    <option value="diagnostic_tests">Diagnostic Tests</option>
+                    <option value="therapy_sessions">Therapy Sessions</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="appointment-type">Appointment Type:</label>
+                <select name="appointmentType" class="form-control" required id="appointment-type">
+                    <option value="">Select...</option>
+                    <option value="online">Online</option>
+                    <option value="in_person">In-Person</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="preferred-date">Preferred Date:</label>
+                <input type="date" name="preferredDate" class="form-control" required id="preferred-date">
+            </div>
+            <div class="form-group">
+                <label for="additional-notes">Additional Notes:</label>
+                <textarea name="additionalNotes" class="form-control" id="additional-notes"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Book Appointment</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="appointment.js"></script>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch('/appointments/book', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                alert(result.message);
+            } else {
+                const result = await response.json();
+                alert(result.message);
+            }
+        });
+    </script>
+</body>
+
+</html>

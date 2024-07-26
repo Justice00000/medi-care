@@ -4,6 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
+const appointmentRoutes = require('./routes/appointments'); // Import the new route
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/', indexRoutes);
 app.use('/', authRoutes); // Use authRoutes directly without /auth prefix
+app.use('/', appointmentRoutes); // Use the new route
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
