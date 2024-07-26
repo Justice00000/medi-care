@@ -4,7 +4,7 @@ const session = require('express-session');
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
-const appointmentRoutes = require('./routes/appointments'); // Import the new route
+const appointmentRoutes = require('./routes/appointment'); // Import the new route
 
 const app = express();
 
