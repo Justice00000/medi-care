@@ -126,6 +126,14 @@
                 center: [10.4515, 10.8157], // Default center, adjust if necessary
                 zoom: 6
             });
+
+            map.on('load', () => {
+                console.log('Map loaded');
+            });
+
+            map.on('error', (e) => {
+                console.error('Map error:', e);
+            });
         }
 
         function findHospitals() {
@@ -157,10 +165,10 @@
                 const hospitalItem = document.createElement('div');
                 hospitalItem.className = 'hospital-item';
                 hospitalItem.innerHTML = `
-            <h3>${hospital.text}</h3>
-            <div id="map-${hospital.id}" class="map-container"></div>
-            <p>${hospital.place_name}</p>
-        `;
+                    <h3>${hospital.text}</h3>
+                    <div id="map-${hospital.id}" class="map-container"></div>
+                    <p>${hospital.place_name}</p>
+                `;
                 container.appendChild(hospitalItem);
 
                 const mapElement = document.getElementById(`map-${hospital.id}`);
