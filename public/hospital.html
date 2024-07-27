@@ -208,45 +208,54 @@
     <script src="swipers.js"></script>
     <script>
         let map;
-        let service;
         let infowindow;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 10.4515, lng: 10.8157 }, // Center map to Nigeria
-                zoom: 6
+                center: { lat: 9.537989731006606, lng: 7.897448691772553 }, // Your default center
+                zoom: 13
             });
             infowindow = new google.maps.InfoWindow();
-            service = new google.maps.places.PlacesService(map);
         }
 
         function findHospitals() {
             const locationInput = document.getElementById('location').value;
+            const API_KEY = '7495dfbc7e864209a86e63f804401a6b';
 
-            const geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ address: locationInput }, (results, status) => {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(locationInput)}&key=${API_KEY}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results.length > 0) {
+                        const location = data.results[0].geometry;
+                        const latLng = new google.maps.LatLng(location.lat, location.lng);
 
-                    const request = {
-                        location: results[0].geometry.location,
-                        radius: '5000', // Search within a 5 km radius
-                        type: ['hospital']
-                    };
+                        map.setCenter(latLng);
 
-                    service.nearbySearch(request, (results, status) => {
-                        if (status === google.maps.places.PlacesServiceStatus.OK) {
-                            for (let i = 0; i < results.length; i++) {
-                                createMarker(results[i]);
+                        const request = {
+                            location: latLng,
+                            radius: '8100', // Search within a 8.1 km radius
+                            type: ['hospital']
+                        };
+
+                        // Update with your method of querying hospitals
+                        service = new google.maps.places.PlacesService(map);
+                        service.nearbySearch(request, (results, status) => {
+                            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                                for (let i = 0; i < results.length; i++) {
+                                    createMarker(results[i]);
+                                }
+                            } else {
+                                alert('No hospitals found in this area.');
                             }
-                        } else {
-                            alert('No hospitals found in this area.');
-                        }
-                    });
-                } else {
-                    alert('Could not find location: ' + status);
-                }
-            });
+                        });
+                    } else {
+                        alert('Could not find location.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error occurred while finding the location.');
+                });
         }
 
         function createMarker(place) {
