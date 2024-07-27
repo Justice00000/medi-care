@@ -5,116 +5,85 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Titile -->
-
+    <!-- Title -->
     <title>EmpowHer Naija</title>
 
-    <!-- meta -->
+    <!-- Meta -->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="stylees.css">
 
-
-    <!-- popin -->
-
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap"
         rel="stylesheet">
 
-    <!-- font awesome for icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Link Swiper's CSS -->
+    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css">
-
-
-
-
-
-
 </head>
 
 <body>
 
-
-
-
-
     <section id="hero-header" style="background-image: url(footer_map.png);">
-
-
-        <!-- nav -->
-
+        <!-- Nav -->
         <nav class="navigation">
             <input type="checkbox" class="menus-btn" id="menus-btn">
             <label for="menus-btn" class="menus-icon">
                 <span class="nav-icon"></span>
             </label>
-            <!-- logo -->
-            <a href="/" class="logos"> <span>EmpowHer</span> Naija</a>
+            <!-- Logo -->
+            <a href="/" class="logos"><span>EmpowHer</span> Naija</a>
 
-            <!-- menu -->
-
+            <!-- Menu -->
             <ul class="menus">
                 <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
-                <li><a href="/insurance" class="menu-link">Best Insurrance</a></li>
+                <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
                 <li><a href="./index.html/why-choose-us" class="menu-link">Emergency</a></li>
-
             </ul>
 
-            <!-- login button -->
+            <!-- Login Button -->
             <a href="/login" class="nav-appointement-btn">Sign in</a>
-
         </nav>
-        <!-- End nav -->
+        <!-- End Nav -->
 
-
-        <!-- content -->
-
+        <!-- Content -->
         <div class="header-content">
             <header class="masthead2">
                 <div class="containere">
                     <h1 class="section-heading tx-bold">Find Hospital</h1>
                     <p class="menus-text"><a class="link-menu" href="index.html"> EmpowHer Naija > <span
                                 style="color:blue;">Hospital</span></a></p>
-
                 </div>
-
             </header>
         </div>
-
     </section>
-
-
 
     <section class="page-section">
         <div class="hospital-list">
             <div class="row card">
-
                 <div class="side-part card">
-
-
                     <h2 class="categorie-title"><b>Categories</b></h2>
                     <hr />
                     <ul>
-                        <li class="categorie-element"> Clinic</li>
-                        <li class="categorie-element"> Hospital</li>
-                        <li class="categorie-element"> Dispensary</li>
-                        <li class="categorie-element"> Drugstore</li>
-                        <li class="categorie-element"> Uncategorized</li>
+                        <li class="categorie-element">Clinic</li>
+                        <li class="categorie-element">Hospital</li>
+                        <li class="categorie-element">Dispensary</li>
+                        <li class="categorie-element">Drugstore</li>
+                        <li class="categorie-element">Uncategorized</li>
                     </ul>
 
                     <div>&nbsp;</div>
@@ -123,17 +92,13 @@
                     <hr />
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
-                            aria-describely="basic-addon2">
-                        <div class="btn btn-dark btn-lg">
-                            <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
-                        </div>
-
+                        <input type="text" id="location" class="form-control" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-dark btn-lg" onclick="findHospitals()">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
                     <div>&nbsp;</div>
-
                 </div>
-                <!--END  <div class="col-lg-3 blog-form">-->
 
                 <div class="hospital-element-container">
                     <div class="hospital-elements card">
@@ -151,64 +116,47 @@
                                 <option value="high">Sorting by high</option>
                             </select>
                         </div>
-
                     </div>
 
                     <div class="hospital-box-container card">
-
-
-
                         <div class="service-box s-box6 card">
                             <!-- icon -->
                             <i class="fa-solid fa-tooth"></i>
-
                             <!-- title -->
                             <strong>Igando General Hospital</strong>
                             <!-- details -->
-                            <p>something </p>
-                            <p>dfdf </p>
-                            <p>fdf </p>
-
+                            <p>Details about the hospital.</p>
                             <!-- btn -->
-
                             <a href="#">View Details</a>
-
                         </div>
-
 
                         <div class="service-box s-box6 card">
                             <!-- icon -->
                             <i class="fa-solid fa-tooth"></i>
-
                             <!-- title -->
                             <strong>Badagry General Hospital</strong>
                             <!-- details -->
-                            <p>hjghjg </p>
-                            <p>ghgh </p>
-                            <p>jjhjj </p>
-
+                            <p>Details about the hospital.</p>
                             <!-- btn -->
-
                             <a href="#">View Details</a>
-
                         </div>
-
-
-
                     </div>
-                    <!-- Sorting by <div class="row"> -->
-
                 </div>
-                <!--END  <div class="col-lg-9">-->
-
             </div>
         </div>
     </section>
+
+    <!-- Load Swiper and Custom Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="swipers.js"></script>
+
+    <!-- Load Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+
     <script>
         let map;
         let infowindow;
+        let service;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -220,9 +168,9 @@
 
         function findHospitals() {
             const locationInput = document.getElementById('location').value;
-            const API_KEY = '7495dfbc7e864209a86e63f804401a6b';
+            const OPENCAGE_API_KEY = '7495dfbc7e864209a86e63f804401a6b';
 
-            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(locationInput)}&key=${API_KEY}`)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(locationInput)}&key=${OPENCAGE_API_KEY}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.results.length > 0) {
@@ -233,11 +181,10 @@
 
                         const request = {
                             location: latLng,
-                            radius: '8100', // Search within a 8.1 km radius
+                            radius: '8100', // Search within an 8.1 km radius
                             type: ['hospital']
                         };
 
-                        // Update with your method of querying hospitals
                         service = new google.maps.places.PlacesService(map);
                         service.nearbySearch(request, (results, status) => {
                             if (status === google.maps.places.PlacesServiceStatus.OK) {
