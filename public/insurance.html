@@ -104,26 +104,26 @@
     <script src="/static/js/swipers.js"></script>
     <script>
         function findInsuranceProviders() {
-            console.log("findInsuranceProviders function called"); // Log to check if function is called
+            console.log("findInsuranceProviders function called");
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
-                    console.log(`Location: ${lat}, ${lng}`); // Log to check location coordinates
+                    console.log(`Location: ${lat}, ${lng}`);
                     const query = `
-                        [out:json];
-                        node
-                          ["amenity"="insurance"]
-                          (around:50000, ${lat}, ${lng});
-                        out body;
-                    `;
+                [out:json];
+                node
+                  ["shop"="insurance"]
+                  (around:50000, ${lat}, ${lng});
+                out body;
+            `;
                     const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
-                    console.log(`Query URL: ${url}`); // Log to check URL
+                    console.log(`Query URL: ${url}`);
 
                     fetch(url)
                         .then(response => response.json())
                         .then(data => {
-                            console.log('Data fetched:', data); // Log to check fetched data
+                            console.log('Data fetched:', data);
                             displayResults(data.elements)
                         })
                         .catch(error => console.error('Error fetching data:', error));
@@ -136,24 +136,28 @@
         }
 
         function displayResults(results) {
-            console.log("Displaying results", results); // Log to check results to be displayed
+            console.log("Displaying results", results);
             const container = document.querySelector('.hospital-box-container');
             container.innerHTML = '';
-            results.forEach(result => {
-                const div = document.createElement('div');
-                div.classList.add('service-box', 's-box6', 'card');
-                div.innerHTML = `
-                    <i class="fa-solid fa-building"></i>
-                    <strong>${result.tags.name || 'Unnamed Insurance Company'}</strong>
-                    <p>Location: ${result.lat}, ${result.lon}</p>
-                    <a href="https://www.openstreetmap.org/?mlat=${result.lat}&mlon=${result.lon}#map=18/${result.lat}/${result.lon}" target="_blank">View Details</a>
-                `;
-                container.appendChild(div);
-            });
+            if (results.length === 0) {
+                container.innerHTML = '<p>No insurance providers found.</p>';
+            } else {
+                results.forEach(result => {
+                    const div = document.createElement('div');
+                    div.classList.add('service-box', 's-box6', 'card');
+                    div.innerHTML = `
+                <i class="fa-solid fa-building"></i>
+                <strong>${result.tags.name || 'Unnamed Insurance Company'}</strong>
+                <p>Location: ${result.lat}, ${result.lon}</p>
+                <a href="https://www.openstreetmap.org/?mlat=${result.lat}&mlon=${result.lon}#map=18/${result.lat}/${result.lon}" target="_blank">View Details</a>
+            `;
+                    container.appendChild(div);
+                });
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            console.log("DOM fully loaded and parsed"); // Log to check if DOM is fully loaded
+            console.log("DOM fully loaded and parsed");
             document.getElementById('search-button').addEventListener('click', findInsuranceProviders);
         });
     </script>
