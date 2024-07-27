@@ -119,6 +119,8 @@
     <script>
         mapboxgl.accessToken = 'sk.eyJ1IjoiY2VlamF5MDAxIiwiYSI6ImNsejNzbTM4dTFkaXcyc3BmazhrOGk4amkifQ.vbh-ySipp8gI8_9jA6nQow';
 
+        let map;
+
         function initMap() {
             map = new mapboxgl.Map({
                 container: 'map', // Ensure this matches your HTML element ID
@@ -137,24 +139,21 @@
         }
 
         function findHospitals() {
-            const locationInput = document.getElementById('location').value;
-
-            fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(locationInput)}.json?access_token=${mapboxgl.accessToken}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.features.length > 0) {
-                        const [lon, lat] = data.features[0].center;
-                        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=${lon},${lat}&access_token=${mapboxgl.accessToken}`)
-                            .then(response => response.json())
-                            .then(data => {
-                                displayHospitals(data.features);
-                            })
-                            .catch(error => console.error('Error fetching hospitals:', error));
-                    } else {
-                        alert('Location not found');
-                    }
-                })
-                .catch(error => console.error('Error fetching location:', error));
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            displayHospitals(data.features);
+                        })
+                        .catch(error => console.error('Error fetching hospitals:', error));
+                }, () => {
+                    alert('Geolocation is not supported or permission denied.');
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
         }
 
         function displayHospitals(hospitals) {
