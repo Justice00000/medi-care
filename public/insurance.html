@@ -62,9 +62,9 @@
                     <h2 class="categorie-title"><b>Filter</b></h2>
                     <hr />
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
-                            aria-describely="basic-addon2">
-                        <div class="btn btn-dark btn-lg">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username"
+                            aria-describedby="basic-addon2">
+                        <div class="btn btn-dark btn-lg" id="search-button">
                             <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
@@ -104,10 +104,12 @@
     <script src="/static/js/swipers.js"></script>
     <script>
         function findInsuranceProviders() {
+            console.log("findInsuranceProviders function called"); // Log to check if function is called
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     const lat = position.coords.latitude;
                     const lng = position.coords.longitude;
+                    console.log(`Location: ${lat}, ${lng}`); // Log to check location coordinates
                     const query = `
                         [out:json];
                         node
@@ -116,10 +118,14 @@
                         out body;
                     `;
                     const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+                    console.log(`Query URL: ${url}`); // Log to check URL
 
                     fetch(url)
                         .then(response => response.json())
-                        .then(data => displayResults(data.elements))
+                        .then(data => {
+                            console.log('Data fetched:', data); // Log to check fetched data
+                            displayResults(data.elements)
+                        })
                         .catch(error => console.error('Error fetching data:', error));
                 }, function (error) {
                     console.error('Error getting location:', error);
@@ -130,6 +136,7 @@
         }
 
         function displayResults(results) {
+            console.log("Displaying results", results); // Log to check results to be displayed
             const container = document.querySelector('.hospital-box-container');
             container.innerHTML = '';
             results.forEach(result => {
@@ -145,7 +152,10 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', findInsuranceProviders);
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("DOM fully loaded and parsed"); // Log to check if DOM is fully loaded
+            document.getElementById('search-button').addEventListener('click', findInsuranceProviders);
+        });
     </script>
 </body>
 
