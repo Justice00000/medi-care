@@ -4,109 +4,54 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Titile -->
-
     <title>EmpowHer Naija</title>
-
-    <!-- meta -->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="stylees.css">
-
-
-    <!-- popin -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
         rel="stylesheet">
-
-    <!-- font awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css">
-
-
-
-
-
-
 </head>
 
 <body>
-
-
-
-
-
     <section id="hero-header" style="background-image: url(footer_map.png);">
-
-
-        <!-- nav -->
-
         <nav class="navigation">
             <input type="checkbox" class="menus-btn" id="menus-btn">
             <label for="menus-btn" class="menus-icon">
                 <span class="nav-icon"></span>
             </label>
-            <!-- logo -->
             <a href="/" class="logos"> <span>EmpowHer</span> Naija</a>
-
-            <!-- menu -->
-
             <ul class="menus">
                 <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
-                <li><a href="/insurance" class="menu-link">Best Insurrance</a></li>
+                <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
                 <li><a href="./index.html/why-choose-us" class="menu-link">Emergency</a></li>
-
             </ul>
-
-            <!-- login button -->
             <a href="/login" class="nav-appointement-btn">Sign in</a>
-
         </nav>
-        <!-- End nav -->
-
-
-        <!-- content -->
-
         <div class="header-content">
             <header class="masthead2">
                 <div class="containere">
                     <h1 class="section-heading tx-bold">Find Hospital</h1>
                     <p class="menus-text"><a class="link-menu" href="index.html"> EmpowHer Naija > <span
                                 style="color:blue;">Hospital</span></a></p>
-
                 </div>
-
             </header>
         </div>
-
     </section>
-
-
 
     <section class="page-section">
         <div class="hospital-list">
             <div class="row card">
-
                 <div class="side-part card">
-
-
                     <h2 class="categorie-title"><b>Categories</b></h2>
                     <hr />
                     <ul>
@@ -116,31 +61,25 @@
                         <li class="categorie-element"> Drugstore</li>
                         <li class="categorie-element"> Uncategorized</li>
                     </ul>
-
                     <div>&nbsp;</div>
-
                     <h2 class="categorie-title"><b>Filter</b></h2>
                     <hr />
-
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
                             aria-describely="basic-addon2">
                         <div class="btn btn-dark btn-lg">
                             <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
                         </div>
-
                     </div>
+                    <button id="find-hospital" class="btn btn-primary btn-lg">Find Nearby Hospitals</button>
                     <div>&nbsp;</div>
-
                 </div>
-                <!--END  <div class="col-lg-3 blog-form">-->
 
                 <div class="hospital-element-container">
                     <div class="hospital-elements card">
                         <div class="cols">
-                            Showing all 9 results
+                            Showing all results
                         </div>
-
                         <div class="col">
                             <select class="form-control">
                                 <option value="">Default Sorting</option>
@@ -151,61 +90,101 @@
                                 <option value="high">Sorting by high</option>
                             </select>
                         </div>
-
                     </div>
-
-                    <div class="hospital-box-container card">
-
-
-
-                        <div class="service-box s-box6 card">
-                            <!-- icon -->
-                            <i class="fa-solid fa-tooth"></i>
-
-                            <!-- title -->
-                            <strong>Igando General Hospital</strong>
-                            <!-- details -->
-                            <p>something </p>
-                            <p>dfdf </p>
-                            <p>fdf </p>
-
-                            <!-- btn -->
-
-                            <a href="#">View Details</a>
-
-                        </div>
-
-
-                        <div class="service-box s-box6 card">
-                            <!-- icon -->
-                            <i class="fa-solid fa-tooth"></i>
-
-                            <!-- title -->
-                            <strong>Badagry General Hospital</strong>
-                            <!-- details -->
-                            <p>hjghjg </p>
-                            <p>ghgh </p>
-                            <p>jjhjj </p>
-
-                            <!-- btn -->
-
-                            <a href="#">View Details</a>
-
-                        </div>
-
-
-
+                    <div id="hospital-box-container" class="hospital-box-container card">
+                        <!-- Hospitals will be displayed here -->
                     </div>
-                    <!-- Sorting by <div class="row"> -->
-
                 </div>
-                <!--END  <div class="col-lg-9">-->
-
             </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="swipers.js"></script>
+    <script>
+        document.getElementById('find-hospital').addEventListener('click', function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        });
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            fetchHospitals(lat, lon);
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert('User denied the request for Geolocation.');
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert('Location information is unavailable.');
+                    break;
+                case error.TIMEOUT:
+                    alert('The request to get user location timed out.');
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert('An unknown error occurred.');
+                    break;
+            }
+        }
+
+        function fetchHospitals(lat, lon) {
+            // Dummy data for hospitals. Replace this with actual API call.
+            const hospitals = [
+                { name: 'Igando General Hospital', lat: 6.5793, lon: 3.2670, address: 'Address 1' },
+                { name: 'Badagry General Hospital', lat: 6.4186, lon: 2.8796, address: 'Address 2' },
+                // Add more hospitals here...
+            ];
+
+            // Calculate distance from user's location to each hospital
+            hospitals.forEach(hospital => {
+                hospital.distance = getDistanceFromLatLonInKm(lat, lon, hospital.lat, hospital.lon);
+            });
+
+            // Sort hospitals by distance
+            hospitals.sort((a, b) => a.distance - b.distance);
+
+            displayHospitals(hospitals);
+        }
+
+        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the earth in km
+            const dLat = deg2rad(lat2 - lat1);
+            const dLon = deg2rad(lon2 - lon1);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const d = R * c; // Distance in km
+            return d;
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI / 180);
+        }
+
+        function displayHospitals(hospitals) {
+            const container = document.getElementById('hospital-box-container');
+            container.innerHTML = '';
+            hospitals.forEach(hospital => {
+                const hospitalDiv = document.createElement('div');
+                hospitalDiv.className = 'service-box s-box6 card';
+                hospitalDiv.innerHTML = `
+                    <i class="fa-solid fa-hospital"></i>
+                    <strong>${hospital.name}</strong>
+                    <p>${hospital.address}</p>
+                    <p>Distance: ${hospital.distance.toFixed(2)} km</p>
+                    <a href="#">View Details</a>
+                `;
+                container.appendChild(hospitalDiv);
+            });
+        }
+    </script>
 </body>
 
 </html>
