@@ -4,132 +4,77 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Titile -->
-
     <title>EmpowHer Naija</title>
-
-    <!-- meta -->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="stylees.css">
-
-
-    <!-- popin -->
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
-        rel="stylesheet">
-
-    <!-- font awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css">
 </head>
 
 <body>
     <section id="hero-header">
-
-
-        <!-- nav -->
-
         <nav class="navigation">
             <input type="checkbox" class="menus-btn" id="menus-btn">
             <label for="menus-btn" class="menus-icon">
                 <span class="nav-icon"></span>
             </label>
-            <!-- logo -->
             <a href="/" class="logos"> <span>EmpowHer</span> Naija</a>
-
-            <!-- menu -->
-
             <ul class="menus">
-                <li><a href="/hopistal" class="menu-link">Find Hospital</a></li>
-                <li><a href="/insurance" class="menu-link">Best Insurrance</a></li>
+                <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
+                <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
                 <li><a href="#why-choose-us" class="menu-link">Emergency</a></li>
-
             </ul>
-
-            <!-- login button -->
             <a href="/login" class="nav-appointement-btn">Sign in</a>
-
         </nav>
-        <!-- End nav -->
-
-
-        <!-- content -->
-
         <div class="header-content">
             <header class="masthead2">
                 <div class="containere">
                     <h1 class="section-heading tx-bold">Organisation</h1>
                     <p class="menus-text"><a class="link-menu" href="home.html"> EmpowHer Naija >
                             <span style="color:blue;">Health insurance provider</span></a></p>
-
                 </div>
-
             </header>
         </div>
-
     </section>
-
-
-
     <section class="page-section">
         <div class="hospital-list">
             <div class="row card">
-
                 <div class="side-part card">
-
-
-                    <h2 class="categorie-title"><b></b> Provider Type</h2>
+                    <h2 class="categorie-title"><b>Provider Type</b></h2>
                     <hr />
                     <ul>
                         <li class="categorie-element"> Personal provider </li>
-                        <li class="categorie-element"> Compagny provider</li>
+                        <li class="categorie-element"> Company provider</li>
                         <li class="categorie-element"> Family provider</li>
-                        <li class="categorie-element"> Gorvnment</li>
+                        <li class="categorie-element"> Government</li>
                         <li class="categorie-element"> All</li>
                     </ul>
-
                     <div>&nbsp;</div>
-
                     <h2 class="categorie-title"><b>Filter</b></h2>
                     <hr />
-
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
                             aria-describely="basic-addon2">
                         <div class="btn btn-dark btn-lg">
                             <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
                         </div>
-
                     </div>
                     <div>&nbsp;</div>
-
                 </div>
-                <!--END  <div class="col-lg-3 blog-form">-->
-
                 <div class="hospital-element-container">
                     <div class="hospital-elements card">
                         <div class="cols">
                             Found result
                         </div>
-
                         <div class="col">
                             <select class="form-control">
                                 <option value="">Default Sorting</option>
@@ -140,43 +85,68 @@
                                 <option value="high">Sorting by high</option>
                             </select>
                         </div>
-
                     </div>
-
                     <div class="hospital-box-container card">
-
-
-
                         <div class="service-box s-box6 card">
-                            <!-- icon -->
-                            <i class="fa-solid fa-tooth"></i>
-
-                            <!-- title -->
+                            <i class="fa-solid fa-building"></i>
                             <strong>Bulemba</strong>
-                            <!-- details -->
-                            <p> </p>
-                            <p> </p>
-                            <p> </p>
-
-                            <!-- btn -->
-
+                            <p></p>
+                            <p></p>
+                            <p></p>
                             <a href="#">View Details</a>
-
                         </div>
-
-
-
                     </div>
-                    <!-- Sorting by <div class="row"> -->
-
                 </div>
-                <!--END  <div class="col-lg-9">-->
-
             </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="/static/js/swipers.js"></script>
+    <script>
+        function findInsuranceProviders() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const query = `
+                        [out:json];
+                        node
+                          ["amenity"="insurance"]
+                          (around:50000, ${lat}, ${lng});
+                        out body;
+                    `;
+                    const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => displayResults(data.elements))
+                        .catch(error => console.error('Error fetching data:', error));
+                }, function (error) {
+                    console.error('Error getting location:', error);
+                });
+            } else {
+                console.error('Geolocation not supported by this browser.');
+            }
+        }
+
+        function displayResults(results) {
+            const container = document.querySelector('.hospital-box-container');
+            container.innerHTML = '';
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.classList.add('service-box', 's-box6', 'card');
+                div.innerHTML = `
+                    <i class="fa-solid fa-building"></i>
+                    <strong>${result.tags.name || 'Unnamed Insurance Company'}</strong>
+                    <p>Location: ${result.lat}, ${result.lon}</p>
+                    <a href="https://www.openstreetmap.org/?mlat=${result.lat}&mlon=${result.lon}#map=18/${result.lat}/${result.lon}" target="_blank">View Details</a>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', findInsuranceProviders);
+    </script>
 </body>
 
 </html>
