@@ -11,33 +11,18 @@
     <link rel="stylesheet" href="stylees.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css">
-    <style>
-        .hospital-item {
-            margin-bottom: 20px;
-        }
-
-        .hospital-item h3 {
-            margin: 0;
-        }
-
-        .map-container {
-            height: 200px;
-            width: 100%;
-        }
-    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 </head>
 
 <body>
-    <section id="hero-header" style="background-image: url(footer_map.png);">
+    <section id="hero-header">
         <nav class="navigation">
             <input type="checkbox" class="menus-btn" id="menus-btn">
             <label for="menus-btn" class="menus-icon">
@@ -47,53 +32,49 @@
             <ul class="menus">
                 <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
                 <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
-                <li><a href="./index.html/why-choose-us" class="menu-link">Emergency</a></li>
+                <li><a href="#why-choose-us" class="menu-link">Emergency</a></li>
             </ul>
             <a href="/login" class="nav-appointement-btn">Sign in</a>
         </nav>
         <div class="header-content">
             <header class="masthead2">
                 <div class="containere">
-                    <h1 class="section-heading tx-bold">Find Hospital</h1>
-                    <p class="menus-text"><a class="link-menu" href="index.html"> EmpowHer Naija > <span
-                                style="color:blue;">Hospital</span></a></p>
+                    <h1 class="section-heading tx-bold">Organisation</h1>
+                    <p class="menus-text"><a class="link-menu" href="home.html"> EmpowHer Naija >
+                            <span style="color:blue;">Health insurance provider</span></a></p>
                 </div>
             </header>
         </div>
     </section>
-
     <section class="page-section">
         <div class="hospital-list">
             <div class="row card">
                 <div class="side-part card">
-                    <h2 class="categorie-title"><b>Categories</b></h2>
+                    <h2 class="categorie-title"><b>Provider Type</b></h2>
                     <hr />
                     <ul>
-                        <li class="categorie-element"> Clinic</li>
-                        <li class="categorie-element"> Hospital</li>
-                        <li class="categorie-element"> Dispensary</li>
-                        <li class="categorie-element"> Drugstore</li>
-                        <li class="categorie-element"> Uncategorized</li>
+                        <li class="categorie-element"> Personal provider </li>
+                        <li class="categorie-element"> Company provider</li>
+                        <li class="categorie-element"> Family provider</li>
+                        <li class="categorie-element"> Government</li>
+                        <li class="categorie-element"> All</li>
                     </ul>
                     <div>&nbsp;</div>
                     <h2 class="categorie-title"><b>Filter</b></h2>
                     <hr />
                     <div class="input-group mb-3">
-                        <input type="text" id="location" class="form-control" placeholder="Enter your location"
-                            aria-label="Location">
-                        <div class="btn btn-dark btn-lg" onclick="findHospitals()">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
+                            aria-describely="basic-addon2">
+                        <div class="btn btn-dark btn-lg">
                             <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
-                    <button id="find-hospital" class="btn btn-primary btn-lg" onclick="findHospitals()">Find Nearby
-                        Hospitals</button>
                     <div>&nbsp;</div>
                 </div>
-
                 <div class="hospital-element-container">
                     <div class="hospital-elements card">
                         <div class="cols">
-                            Showing all results
+                            Found result
                         </div>
                         <div class="col">
                             <select class="form-control">
@@ -106,86 +87,67 @@
                             </select>
                         </div>
                     </div>
-                    <div id="hospital-box-container" class="hospital-box-container card">
-                        <!-- Hospitals will be displayed here -->
+                    <div class="hospital-box-container card">
+                        <div class="service-box s-box6 card">
+                            <i class="fa-solid fa-tooth"></i>
+                            <strong>Bulemba</strong>
+                            <p> </p>
+                            <p> </p>
+                            <p> </p>
+                            <a href="#">View Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+    <script src="/static/js/swipers.js"></script>
     <script>
-        mapboxgl.accessToken = 'sk.eyJ1IjoiY2VlamF5MDAxIiwiYSI6ImNsejNzbTM4dTFkaXcyc3BmazhrOGk4amkifQ.vbh-ySipp8gI8_9jA6nQow';
-
-        let map;
-
-        function initMap() {
-            map = new mapboxgl.Map({
-                container: 'map', // Ensure this matches your HTML element ID
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [10.4515, 10.8157], // Default center, adjust if necessary
-                zoom: 6
-            });
-
-            map.on('load', () => {
-                console.log('Map loaded');
-            });
-
-            map.on('error', (e) => {
-                console.error('Map error:', e);
-            });
-        }
-
-        function findHospitals() {
+        function findInsuranceProviders() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const { latitude, longitude } = position.coords;
-                    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=${longitude},${latitude}&access_token=${mapboxgl.accessToken}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            displayHospitals(data.features);
-                        })
-                        .catch(error => console.error('Error fetching hospitals:', error));
-                }, () => {
-                    alert('Geolocation is not supported or permission denied.');
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const location = new google.maps.LatLng(lat, lng);
+                    const request = {
+                        location: location,
+                        radius: '50000',
+                        keyword: 'insurance company'
+                    };
+                    const service = new google.maps.places.PlacesService(document.createElement('div'));
+                    service.nearbySearch(request, function (results, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            displayResults(results);
+                        } else {
+                            console.error('Error fetching results:', status);
+                        }
+                    });
+                }, function (error) {
+                    console.error('Error getting location:', error);
                 });
             } else {
-                alert('Geolocation is not supported by this browser.');
+                console.error('Geolocation not supported by this browser.');
             }
         }
 
-        function displayHospitals(hospitals) {
-            const container = document.getElementById('hospital-box-container');
+        function displayResults(results) {
+            const container = document.querySelector('.hospital-box-container');
             container.innerHTML = '';
-
-            hospitals.forEach(hospital => {
-                const hospitalItem = document.createElement('div');
-                hospitalItem.className = 'hospital-item';
-                hospitalItem.innerHTML = `
-                    <h3>${hospital.text}</h3>
-                    <div id="map-${hospital.id}" class="map-container"></div>
-                    <p>${hospital.place_name}</p>
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.classList.add('service-box', 's-box6', 'card');
+                div.innerHTML = `
+                    <i class="fa-solid fa-building"></i>
+                    <strong>${result.name}</strong>
+                    <p>${result.vicinity}</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${result.geometry.location.lat()},${result.geometry.location.lng()}" target="_blank">View Details</a>
                 `;
-                container.appendChild(hospitalItem);
-
-                const mapElement = document.getElementById(`map-${hospital.id}`);
-                const hospitalMap = new mapboxgl.Map({
-                    container: mapElement,
-                    style: 'mapbox://styles/mapbox/streets-v11',
-                    center: hospital.center,
-                    zoom: 13
-                });
-
-                new mapboxgl.Marker()
-                    .setLngLat(hospital.center)
-                    .setPopup(new mapboxgl.Popup().setText(hospital.text))
-                    .addTo(hospitalMap);
+                container.appendChild(div);
             });
         }
 
-        window.onload = initMap;
+        document.addEventListener('DOMContentLoaded', findInsuranceProviders);
     </script>
 </body>
 
