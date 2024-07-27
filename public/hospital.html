@@ -20,6 +20,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css">
+    <style>
+        .hospital-item {
+            margin-bottom: 20px;
+        }
+
+        .hospital-item h3 {
+            margin: 0;
+        }
+
+        .map-container {
+            height: 200px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -65,13 +79,14 @@
                     <h2 class="categorie-title"><b>Filter</b></h2>
                     <hr />
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
-                            aria-describely="basic-addon2">
-                        <div class="btn btn-dark btn-lg">
+                        <input type="text" id="location" class="form-control" placeholder="Enter your location"
+                            aria-label="Location">
+                        <div class="btn btn-dark btn-lg" onclick="findHospitals()">
                             <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
-                    <button id="find-hospital" class="btn btn-primary btn-lg">Find Nearby Hospitals</button>
+                    <button id="find-hospital" class="btn btn-primary btn-lg" onclick="findHospitals()">Find Nearby
+                        Hospitals</button>
                     <div>&nbsp;</div>
                 </div>
 
@@ -98,90 +113,57 @@
             </div>
         </div>
     </section>
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="swipers.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
     <script>
-        document.getElementById('find-hospital').addEventListener('click', function () {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                alert('Geolocation is not supported by this browser.');
-            }
-        });
+        mapboxgl.accessToken = 'sk.eyJ1IjoiY2VlamF5MDAxIiwiYSI6ImNsejNzbTM4dTFkaXcyc3BmazhrOGk4amkifQ.vbh-ySipp8gI8_9jA6nQow';
 
-        function showPosition(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            fetchHospitals(lat, lon);
-        }
+        function findHospitals() {
+            const locationInput = document.getElementById('location').value;
 
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    alert('User denied the request for Geolocation.');
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    alert('Location information is unavailable.');
-                    break;
-                case error.TIMEOUT:
-                    alert('The request to get user location timed out.');
-                    break;
-                case error.UNKNOWN_ERROR:
-                    alert('An unknown error occurred.');
-                    break;
-            }
-        }
-
-        function fetchHospitals(lat, lon) {
-            // Dummy data for hospitals. Replace this with actual API call.
-            const hospitals = [
-                { name: 'Igando General Hospital', lat: 6.5793, lon: 3.2670, address: 'Address 1' },
-                { name: 'Badagry General Hospital', lat: 6.4186, lon: 2.8796, address: 'Address 2' },
-                // Add more hospitals here...
-            ];
-
-            // Calculate distance from user's location to each hospital
-            hospitals.forEach(hospital => {
-                hospital.distance = getDistanceFromLatLonInKm(lat, lon, hospital.lat, hospital.lon);
-            });
-
-            // Sort hospitals by distance
-            hospitals.sort((a, b) => a.distance - b.distance);
-
-            displayHospitals(hospitals);
-        }
-
-        function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-            const R = 6371; // Radius of the earth in km
-            const dLat = deg2rad(lat2 - lat1);
-            const dLon = deg2rad(lon2 - lon1);
-            const a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            const d = R * c; // Distance in km
-            return d;
-        }
-
-        function deg2rad(deg) {
-            return deg * (Math.PI / 180);
+            fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(locationInput)}.json?access_token=${mapboxgl.accessToken}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.features.length > 0) {
+                        const [lon, lat] = data.features[0].center;
+                        fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=${lon},${lat}&access_token=${mapboxgl.accessToken}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                displayHospitals(data.features);
+                            });
+                    } else {
+                        alert('Location not found');
+                    }
+                });
         }
 
         function displayHospitals(hospitals) {
             const container = document.getElementById('hospital-box-container');
             container.innerHTML = '';
+
             hospitals.forEach(hospital => {
-                const hospitalDiv = document.createElement('div');
-                hospitalDiv.className = 'service-box s-box6 card';
-                hospitalDiv.innerHTML = `
-                    <i class="fa-solid fa-hospital"></i>
-                    <strong>${hospital.name}</strong>
-                    <p>${hospital.address}</p>
-                    <p>Distance: ${hospital.distance.toFixed(2)} km</p>
-                    <a href="#">View Details</a>
+                const hospitalItem = document.createElement('div');
+                hospitalItem.className = 'hospital-item';
+                hospitalItem.innerHTML = `
+                    <h3>${hospital.text}</h3>
+                    <div id="map-${hospital.id}" class="map-container"></div>
+                    <p>${hospital.place_name}</p>
                 `;
-                container.appendChild(hospitalDiv);
+                container.appendChild(hospitalItem);
+
+                const mapElement = document.getElementById(`map-${hospital.id}`);
+                const hospitalMap = new mapboxgl.Map({
+                    container: mapElement,
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: hospital.center,
+                    zoom: 13
+                });
+
+                new mapboxgl.Marker()
+                    .setLngLat(hospital.center)
+                    .setPopup(new mapboxgl.Popup().setText(hospital.text))
+                    .addTo(hospitalMap);
             });
         }
     </script>
