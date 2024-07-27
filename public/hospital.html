@@ -119,6 +119,15 @@
     <script>
         mapboxgl.accessToken = 'sk.eyJ1IjoiY2VlamF5MDAxIiwiYSI6ImNsejNzbTM4dTFkaXcyc3BmazhrOGk4amkifQ.vbh-ySipp8gI8_9jA6nQow';
 
+        function initMap() {
+            map = new mapboxgl.Map({
+                container: 'map', // Ensure this matches your HTML element ID
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [10.4515, 10.8157], // Default center, adjust if necessary
+                zoom: 6
+            });
+        }
+
         function findHospitals() {
             const locationInput = document.getElementById('location').value;
 
@@ -131,11 +140,13 @@
                             .then(response => response.json())
                             .then(data => {
                                 displayHospitals(data.features);
-                            });
+                            })
+                            .catch(error => console.error('Error fetching hospitals:', error));
                     } else {
                         alert('Location not found');
                     }
-                });
+                })
+                .catch(error => console.error('Error fetching location:', error));
         }
 
         function displayHospitals(hospitals) {
@@ -146,10 +157,10 @@
                 const hospitalItem = document.createElement('div');
                 hospitalItem.className = 'hospital-item';
                 hospitalItem.innerHTML = `
-                    <h3>${hospital.text}</h3>
-                    <div id="map-${hospital.id}" class="map-container"></div>
-                    <p>${hospital.place_name}</p>
-                `;
+            <h3>${hospital.text}</h3>
+            <div id="map-${hospital.id}" class="map-container"></div>
+            <p>${hospital.place_name}</p>
+        `;
                 container.appendChild(hospitalItem);
 
                 const mapElement = document.getElementById(`map-${hospital.id}`);
@@ -166,6 +177,8 @@
                     .addTo(hospitalMap);
             });
         }
+
+        window.onload = initMap;
     </script>
 </body>
 
