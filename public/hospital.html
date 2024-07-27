@@ -4,150 +4,264 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Titile -->
+
     <title>EmpowHer Naija</title>
+
+    <!-- meta -->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="stylees.css">
+
+
+    <!-- popin -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type="text/css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+
+
+
+
+
+
 </head>
 
 <body>
-    <section id="hero-header">
+
+
+
+
+
+    <section id="hero-header" style="background-image: url(footer_map.png);">
+
+
+        <!-- nav -->
+
         <nav class="navigation">
             <input type="checkbox" class="menus-btn" id="menus-btn">
             <label for="menus-btn" class="menus-icon">
                 <span class="nav-icon"></span>
             </label>
+            <!-- logo -->
             <a href="/" class="logos"> <span>EmpowHer</span> Naija</a>
+
+            <!-- menu -->
+
             <ul class="menus">
                 <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
-                <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
-                <li><a href="#why-choose-us" class="menu-link">Emergency</a></li>
+                <li><a href="/insurance" class="menu-link">Best Insurrance</a></li>
+                <li><a href="./index.html/why-choose-us" class="menu-link">Emergency</a></li>
+
             </ul>
+
+            <!-- login button -->
             <a href="/login" class="nav-appointement-btn">Sign in</a>
+
         </nav>
+        <!-- End nav -->
+
+
+        <!-- content -->
+
         <div class="header-content">
             <header class="masthead2">
                 <div class="containere">
-                    <h1 class="section-heading tx-bold">Organisation</h1>
-                    <p class="menus-text"><a class="link-menu" href="home.html"> EmpowHer Naija >
-                            <span style="color:blue;">Health insurance provider</span></a></p>
+                    <h1 class="section-heading tx-bold">Find Hospital</h1>
+                    <p class="menus-text"><a class="link-menu" href="index.html"> EmpowHer Naija > <span
+                                style="color:blue;">Hospital</span></a></p>
+
                 </div>
+
             </header>
         </div>
+
     </section>
+
+
+
     <section class="page-section">
         <div class="hospital-list">
             <div class="row card">
+
                 <div class="side-part card">
-                    <h2 class="categorie-title"><b>Provider Type</b></h2>
+
+
+                    <h2 class="categorie-title"><b>Categories</b></h2>
                     <hr />
                     <ul>
-                        <li class="categorie-element"> Personal provider </li>
-                        <li class="categorie-element"> Company provider</li>
-                        <li class="categorie-element"> Family provider</li>
-                        <li class="categorie-element"> Government</li>
-                        <li class="categorie-element"> All</li>
+                        <li class="categorie-element"> Clinic</li>
+                        <li class="categorie-element"> Hospital</li>
+                        <li class="categorie-element"> Dispensary</li>
+                        <li class="categorie-element"> Drugstore</li>
+                        <li class="categorie-element"> Uncategorized</li>
                     </ul>
+
                     <div>&nbsp;</div>
+
                     <h2 class="categorie-title"><b>Filter</b></h2>
                     <hr />
+
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's username"
-                            aria-describely="basic-addon2">
-                        <div class="btn btn-dark btn-lg">
-                            <span class="btn btn-dark btn-lg"><i class="fa fa-search"></i></span>
-                        </div>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username">
+                        <button class="btn btn-dark btn-lg" aria-label="Search">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
-                    <div>&nbsp;</div>
+
                 </div>
-                <div class="hospital-element-container">
-                    <div class="hospital-elements card">
-                        <div class="cols">
-                            Found result
-                        </div>
-                        <div class="col">
-                            <select class="form-control">
-                                <option value="">Default Sorting</option>
-                                <option value="popularity">Sorting by popularity</option>
-                                <option value="average">Sorting by average</option>
-                                <option value="latest">Sorting by latest</option>
-                                <option value="low">Sorting by low</option>
-                                <option value="high">Sorting by high</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="hospital-box-container card">
-                        <div class="service-box s-box6 card">
-                            <i class="fa-solid fa-tooth"></i>
-                            <strong>Bulemba</strong>
-                            <p> </p>
-                            <p> </p>
-                            <p> </p>
-                            <a href="#">View Details</a>
-                        </div>
-                    </div>
-                </div>
+                <div>&nbsp;</div>
+
             </div>
+            <!--END  <div class="col-lg-3 blog-form">-->
+
+            <div class="hospital-element-container">
+                <div class="hospital-elements card">
+                    <div class="cols">
+                        Showing all 9 results
+                    </div>
+
+                    <div class="col">
+                        <select class="form-control">
+                            <option value="">Default Sorting</option>
+                            <option value="popularity">Sorting by popularity</option>
+                            <option value="average">Sorting by average</option>
+                            <option value="latest">Sorting by latest</option>
+                            <option value="low">Sorting by low</option>
+                            <option value="high">Sorting by high</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="hospital-box-container card">
+
+
+
+                    <div class="service-box s-box6 card">
+                        <!-- icon -->
+                        <i class="fa-solid fa-tooth"></i>
+
+                        <!-- title -->
+                        <strong>Igando General Hospital</strong>
+                        <!-- details -->
+                        <p>something </p>
+                        <p>dfdf </p>
+                        <p>fdf </p>
+
+                        <!-- btn -->
+
+                        <a href="#">View Details</a>
+
+                    </div>
+
+
+                    <div class="service-box s-box6 card">
+                        <!-- icon -->
+                        <i class="fa-solid fa-tooth"></i>
+
+                        <!-- title -->
+                        <strong>Badagry General Hospital</strong>
+                        <!-- details -->
+                        <p>hjghjg </p>
+                        <p>ghgh </p>
+                        <p>jjhjj </p>
+
+                        <!-- btn -->
+
+                        <a href="#">View Details</a>
+
+                    </div>
+
+
+
+                </div>
+                <!-- Sorting by <div class="row"> -->
+
+            </div>
+            <!--END  <div class="col-lg-9">-->
+
+        </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="/static/js/swipers.js"></script>
+    <script src="swipers.js"></script>
     <script>
-        function findInsuranceProviders() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
-                    const location = new google.maps.LatLng(lat, lng);
-                    const request = {
-                        location: location,
-                        radius: '50000',
-                        keyword: 'insurance company'
-                    };
-                    const service = new google.maps.places.PlacesService(document.createElement('div'));
-                    service.nearbySearch(request, function (results, status) {
-                        if (status === google.maps.places.PlacesServiceStatus.OK) {
-                            displayResults(results);
-                        } else {
-                            console.error('Error fetching results:', status);
-                        }
-                    });
-                }, function (error) {
-                    console.error('Error getting location:', error);
-                });
-            } else {
-                console.error('Geolocation not supported by this browser.');
-            }
+        let map;
+        let service;
+        let infowindow;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 10.4515, lng: 10.8157 }, // Center map to Nigeria
+                zoom: 6
+            });
+            infowindow = new google.maps.InfoWindow();
+            service = new google.maps.places.PlacesService(map);
         }
 
-        function displayResults(results) {
-            const container = document.querySelector('.hospital-box-container');
-            container.innerHTML = '';
-            results.forEach(result => {
-                const div = document.createElement('div');
-                div.classList.add('service-box', 's-box6', 'card');
-                div.innerHTML = `
-                    <i class="fa-solid fa-building"></i>
-                    <strong>${result.name}</strong>
-                    <p>${result.vicinity}</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=${result.geometry.location.lat()},${result.geometry.location.lng()}" target="_blank">View Details</a>
-                `;
-                container.appendChild(div);
+        function findHospitals() {
+            const locationInput = document.getElementById('location').value;
+
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: locationInput }, (results, status) => {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+
+                    const request = {
+                        location: results[0].geometry.location,
+                        radius: '5000', // Search within a 5 km radius
+                        type: ['hospital']
+                    };
+
+                    service.nearbySearch(request, (results, status) => {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            for (let i = 0; i < results.length; i++) {
+                                createMarker(results[i]);
+                            }
+                        } else {
+                            alert('No hospitals found in this area.');
+                        }
+                    });
+                } else {
+                    alert('Could not find location: ' + status);
+                }
             });
         }
 
-        document.addEventListener('DOMContentLoaded', findInsuranceProviders);
+        function createMarker(place) {
+            const marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', () => {
+                infowindow.setContent(place.name);
+                infowindow.open(map, marker);
+            });
+        }
+
+        window.onload = initMap;
     </script>
 </body>
 
