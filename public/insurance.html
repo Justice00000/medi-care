@@ -87,14 +87,6 @@
                         </div>
                     </div>
                     <div class="hospital-box-container card">
-                        <div class="service-box s-box6 card">
-                            <i class="fa-solid fa-building"></i>
-                            <strong>Bulemba</strong>
-                            <p></p>
-                            <p></p>
-                            <p></p>
-                            <a href="#">View Details</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -111,12 +103,12 @@
                     const lng = position.coords.longitude;
                     console.log(`Location: ${lat}, ${lng}`);
                     const query = `
-                [out:json];
-                node
-                  ["shop"="insurance"]
-                  (around:50000, ${lat}, ${lng});
-                out body;
-            `;
+                        [out:json];
+                        node
+                          ["shop"="insurance"]
+                          (around:50000, ${lat}, ${lng});
+                        out body;
+                    `;
                     const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
                     console.log(`Query URL: ${url}`);
 
@@ -124,7 +116,14 @@
                         .then(response => response.json())
                         .then(data => {
                             console.log('Data fetched:', data);
-                            displayResults(data.elements)
+                            const results = data.elements.map(el => ({
+                                lat: el.lat,
+                                lon: el.lon,
+                                name: el.tags.name || 'Unnamed Insurance Company',
+                                distance: calculateDistance(lat, lng, el.lat, el.lon)
+                            }));
+                            results.sort((a, b) => a.distance - b.distance); // Sort by distance
+                            displayResults(results);
                         })
                         .catch(error => console.error('Error fetching data:', error));
                 }, function (error) {
@@ -133,6 +132,18 @@
             } else {
                 console.error('Geolocation not supported by this browser.');
             }
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = (lat2 - lat1) * (Math.PI / 180);
+            const dLon = (lon2 - lon1) * (Math.PI / 180);
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c; // Distance in km
+            return distance;
         }
 
         function displayResults(results) {
@@ -146,11 +157,12 @@
                     const div = document.createElement('div');
                     div.classList.add('service-box', 's-box6', 'card');
                     div.innerHTML = `
-                <i class="fa-solid fa-building"></i>
-                <strong>${result.tags.name || 'Unnamed Insurance Company'}</strong>
-                <p>Location: ${result.lat}, ${result.lon}</p>
-                <a href="https://www.openstreetmap.org/?mlat=${result.lat}&mlon=${result.lon}#map=18/${result.lat}/${result.lon}" target="_blank">View Details</a>
-            `;
+                        <i class="fa-solid fa-building"></i>
+                        <strong>${result.name}</strong>
+                        <p>Location: ${result.lat.toFixed(6)}, ${result.lon.toFixed(6)}</p>
+                        <p>Distance: ${result.distance.toFixed(2)} km</p>
+                        <a href="https://www.openstreetmap.org/?mlat=${result.lat}&mlon=${result.lon}#map=18/${result.lat}/${result.lon}" target="_blank">View Details</a>
+                    `;
                     container.appendChild(div);
                 });
             }
