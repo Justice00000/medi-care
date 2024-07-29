@@ -14,6 +14,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="stylees.css">
+    <link rel="stylesheet" href="emergency.css">
 
     <!-- Poppins Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,32 +36,24 @@
 
 <body>
     <section id="hero">
-        <!-- Navigation -->
         <nav class="navigation">
             <input type="checkbox" class="menus-btn" id="menus-btn">
             <label for="menus-btn" class="menus-icon">
                 <span class="nav-icon"></span>
             </label>
-            <!-- Logo -->
             <a href="/" class="logos"> <span>EmpowHer</span> Naija</a>
-            <!-- Menu -->
             <ul class="menus">
                 <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
                 <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
-                <li><a href="#" class="menu-link">Emergency</a></li>
+                <li><a href="#" class="menu-link" id="emergencyBtn">Emergency</a></li>
             </ul>
-            <!-- login button -->
             <a href="/login" id="loginButton" class="nav-appointement-btn">Sign in</a>
         </nav>
-        <!-- End Navigation -->
-        <!-- Content -->
         <div class="hero-content">
-            <!-- Text -->
             <div class="hero-text">
                 <h1>EmpowHer Naija <br /> Your health, our priority</h1>
                 <p>We bring together the best services and sanitary products to provide you with flawless support and
                     well-being on a daily basis.</p>
-                <!-- Buttons -->
                 <div class="hero-text-btns">
                     <a href="/hospital">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -72,12 +65,49 @@
                     </a>
                 </div>
             </div>
-            <!-- End Text -->
-            <!-- Images -->
             <div class="hero-img">
                 <img src="hospital5.png" alt="hospital">
             </div>
         </div>
+    </section>
+
+    <!-- Emergency Modal -->
+    <div id="emergencyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Emergency Assistance</h2>
+            <button onclick="callEmergency()">Call Emergency Services</button>
+            <button onclick="sendEmergencySMS()">Send Emergency SMS</button>
+            <button onclick="shareLocation()">Share Location</button>
+            <button onclick="showDirections()">Get Directions to Nearest Hospital</button>
+        </div>
+    </div>
+    <!-- End Navigation -->
+    <!-- Content -->
+    <div class="hero-content">
+        <!-- Text -->
+        <div class="hero-text">
+            <h1>EmpowHer Naija <br /> Your health, our priority</h1>
+            <p>We bring together the best services and sanitary products to provide you with flawless support and
+                well-being on a daily basis.</p>
+            <!-- Buttons -->
+            <div class="hero-text-btns">
+                <a href="/hospital">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Find hospital
+                </a>
+                <a href="/insurance">
+                    <i class="fa-solid fa-suitcase-medical"></i>
+                    Insurance support
+                </a>
+            </div>
+        </div>
+        <!-- End Text -->
+        <!-- Images -->
+        <div class="hero-img">
+            <img src="hospital5.png" alt="hospital">
+        </div>
+    </div>
     </section>
     <!-- Search Section -->
     <div class="appointment-search-container">
@@ -363,6 +393,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="swipers.js"></script>
+    <script src="emergency.js"></script>
     <script>
         // Function to update button text based on authentication status
         function updateAuthButton() {

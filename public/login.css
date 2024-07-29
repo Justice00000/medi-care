@@ -46,7 +46,7 @@ body {
     line-height: 1.5;
     color: #67748e;
     background-color: #fff;
-    background-image: url("../../images/footer_map.png");
+    background-image: url("footer_map.png");
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
