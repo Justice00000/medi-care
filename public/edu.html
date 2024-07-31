@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Title -->
+    <title>Women Health Materials</title>
+
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="stylees.css">
+    <link rel="stylesheet" href="login.css">
+
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    .materials-section {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .materials-section .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .materials-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #344767;
+    }
+
+    .materials-section p {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+        color: #666;
+    }
+
+    .materials-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .material-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .material-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .material-item h3 {
+        font-size: 1.5em;
+        margin: 16px 0;
+        color: #344767;
+    }
+
+    .material-item p {
+        font-size: 1em;
+    }
+</style>
+
+<body>
+    <section id="hero">
+        <nav class="navigation">
+            <input type="checkbox" class="menus-btn" id="menus-btn">
+            <label for="menus-btn" class="menus-icon">
+                <span class="nav-icon"></span>
+            </label>
+            <a href="/" class="logos"> <span>EmpowHer</span> Naija</a>
+            <ul class="menus">
+                <li><a href="/hospital" class="menu-link">Find Hospital</a></li>
+                <li><a href="/insurance" class="menu-link">Best Insurance</a></li>
+                <li><a href="#" class="menu-link" id="emergencyBtn">Emergency</a></li>
+            </ul>
+            <a href="/login" id="loginButton" class="nav-appointement-btn">Sign in</a>
+        </nav>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Women <br /> Health Materials</h1>
+                <p>Empowering women with the knowledge and resources to maintain their health and well-being.</p>
+                <div class="hero-text-btns">
+                    <a href="/hospital">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Find hospital
+                    </a>
+                    <a href="/insurance">
+                        <i class="fa-solid fa-suitcase-medical"></i>
+                        Insurance support
+                    </a>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="hospital5.png" alt="hospital">
+            </div>
+        </div>
+    </section>
+
+    <section id="materials" class="materials-section">
+        <div class="container">
+            <h2>Health Materials for Women</h2>
+            <p>Explore a range of materials to support women's health, including articles, guides, and videos.</p>
+
+            <div class="materials-grid">
+                <div class="material-item">
+                    <h3>Understanding Women's Health</h3>
+                    <p>An in-depth guide on the various aspects of women's health.</p>
+                    <a href="material1.pdf" class="btn" download>Download PDF</a>
+                </div>
+                <div class="material-item">
+                    <h3>Mental Health and Wellness</h3>
+                    <p>Tips and resources to maintain mental well-being.</p>
+                    <a href="material2.pdf" class="btn" download>Download PDF</a>
+                </div>
+                <div class="material-item">
+                    <h3>Nutrition for Women</h3>
+                    <p>A comprehensive guide on nutrition and diet for women.</p>
+                    <a href="material3.pdf" class="btn" download>Download PDF</a>
+                </div>
+                <div class="material-item">
+                    <h3>Exercise and Fitness</h3>
+                    <p>Exercise routines and fitness tips tailored for women.</p>
+                    <a href="material4.pdf" class="btn" download>Download PDF</a>
+                </div>
+                <div class="material-item">
+                    <h3>Preventive Care</h3>
+                    <p>Information on preventive care and health screenings for women.</p>
+                    <a href="material5.pdf" class="btn" download>Download PDF</a>
+                </div>
+                <div class="material-item">
+                    <h3>Reproductive Health</h3>
+                    <p>Resources on reproductive health and family planning.</p>
+                    <a href="material6.pdf" class="btn" download>Download PDF</a>
+                </div>
+            </div>
+        </div>
+        <script src="swipers.js"></script>
+    </section>
+
+    <!-- Script to ensure the proper working of navigation and other components -->
+    <script>
+        // Get the modal
+        var modal = document.getElementById("emergencyModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("emergencyBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close-btn")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function callEmergency() {
+            window.location.href = "tel:112";
+        }
+
+        function sendEmergencySMS() {
+            window.location.href = "sms:112";
+        }
+
+        function shareLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    alert("Latitude: " + position.coords.latitude + "\nLongitude: " + position.coords.longitude);
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showDirections() {
+            window.location.href = "https://www.google.com/maps/dir/?api=1&destination=hospital";
+        }
+    </script>
+</body>
+
+</html>
